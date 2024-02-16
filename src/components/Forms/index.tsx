@@ -24,9 +24,12 @@ interface FormsProps {
 
 const TagsList: string[] = [
   "angry",
+  "black",
   "cute",
   "funny",
+  "gray",
   "happy",
+  "orange",
   "sad",
   "sleepy",
   "surprised",

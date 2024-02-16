@@ -72,7 +72,7 @@ export const Home: React.FC<HomeProps> = () => {
       />
       {loading && (
         <div className="loading">
-          <TailSpin color="#0093e5" height={50} width={50} />
+          <TailSpin color="#0093e5" height={60} width={60} />
         </div>
       )}
       {error && <p className="error-message">{error}</p>}
@@ -80,18 +80,16 @@ export const Home: React.FC<HomeProps> = () => {
         <div className="imageContainer">
           <Card
             sx={{
-              height: "15.625rem",
-              width: "15.625rem",
-              margin: "2.5rem 0",
-              border: "5px solid #DADADA",
+              margin: "3rem 0",
+              border: "0.5rem solid #DADADA",
               borderRadius: 0,
-              boxShadow: "0 2px 2px rgba(0,0,0,0.5)",
+              boxShadow: "0 0.25rem 0.25rem rgba(0,0,0,0.5)",
             }}
           >
             <img
               src={catImage}
               alt={`${selectedTag} cat image`}
-              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              style={{ height: "31.25rem", objectFit: "cover" }}
             />
           </Card>
           <Button

@@ -1,10 +1,10 @@
 import { Home } from "./Home";
-import LogoSVG from "./components/Logo/LogoSVG";
+import Logo from "./components/Logo/Logo";
 
 function App() {
   return (
     <div className="AppContainer">
-      <LogoSVG />
+      <Logo />
       <Home />
     </div>
   );
