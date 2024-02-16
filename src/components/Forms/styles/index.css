@@ -1,0 +1,19 @@
+.css-ofrcno-MuiGrid-root {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .css-ofrcno-MuiGrid-root,
+  .css-ofrcno-MuiGrid-root > .MuiGrid-item {
+    padding: 0 !important;
+    margin-right: 1rem !important;
+    flex-wrap: nowrap !important;
+    &:last-child {
+      margin-right: 0 !important;
+    }
+  }
+  
+  .css-u78q51-MuiGrid-root {
+    max-width: none !important;
+  }

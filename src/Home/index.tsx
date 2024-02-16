@@ -2,9 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { TailSpin } from "react-loader-spinner";
 import { Forms } from "../components/Forms";
-import CardImg from "../components/CardImg/index";
+import { Container, Button, Card } from "@mui/material";
+import './styles/index.css';
 
-export const Home: React.FC = () => {
+interface HomeProps {}
+
+export const Home: React.FC<HomeProps> = () => {
   const [catImage, setCatImage] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
@@ -18,9 +21,15 @@ export const Home: React.FC = () => {
   }, [loading, selectedTag, text]);
 
   const generateCatImage = async () => {
-
     try {
       setLoading(true);
+      setError("");
+
+      if (!selectedTag) {
+        setError("Choose the type of kitten you want first");
+        return;
+      }
+
       const apiUrl = "https://cataas.com/";
       const tagParam = `cat/${selectedTag}`;
       const textParam = `/says/${encodeURIComponent(text)}`;
@@ -28,19 +37,17 @@ export const Home: React.FC = () => {
         ? `${apiUrl}${tagParam}${textParam}`
         : `${apiUrl}${tagParam}`;
 
-      console.log({ url });
-
       const response = await axios.get<Blob>(url, { responseType: "blob" });
 
       if (response.data) {
         setCatImage(URL.createObjectURL(response.data));
         setError("");
       } else {
-        setError("Resposta da API sem dados de imagem.");
+        setError("Kitten not found :(");
       }
     } catch {
-      console.error("Erro ao gerar a imagem do gato:");
-      setError(`Erro ao tentar gerar a imagem do gato. Detalhes do erro:`);
+      console.error("Image not generated");
+      setError(`Image not generated - the kitten is shy ><`);
     } finally {
       setLoading(false);
     }
@@ -56,20 +63,53 @@ export const Home: React.FC = () => {
   };
 
   return (
-    <div>
+    <Container maxWidth="sm">
       <Forms
+        selectedTag={selectedTag}
         setSelectedTag={setSelectedTag}
         setText={setText}
+        onGenerateImage={() => setLoading(true)}
       />
-      <button onClick={() => generateCatImage()}>Gerar Imagem</button>
-      {loading && <TailSpin color="#00BFFF" height={50} width={50} />}
-      {error && <p className="error-message">{error}</p>}
-      {catImage && <CardImg catImage={<img src={catImage} alt={`${selectedTag} cat image`} className="cat-image" />} />}
-      {catImage && (
-        <button onClick={handleDownload} className="download-button">
-          Download
-        </button>
+      {loading && (
+        <div className="loading">
+          <TailSpin color="#0093e5" height={50} width={50} />
+        </div>
       )}
-    </div>
+      {error && <p className="error-message">{error}</p>}
+      {!loading && catImage && (
+        <div className="imageContainer">
+          <Card
+            sx={{
+              height: "15.625rem",
+              width: "15.625rem",
+              margin: "2.5rem 0",
+              border: "5px solid #DADADA",
+              borderRadius: 0,
+              boxShadow: "0 2px 2px rgba(0,0,0,0.5)",
+            }}
+          >
+            <img
+              src={catImage}
+              alt={`${selectedTag} cat image`}
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            />
+          </Card>
+          <Button
+            onClick={handleDownload}
+            variant="contained"
+            className="download-button"
+            style={{
+              width: "8rem",
+              backgroundColor: "#0093e5",
+              color: "#fff",
+              marginBottom: "2rem",
+            }}
+            fullWidth
+          >
+            Download
+          </Button>
+        </div>
+      )}
+    </Container>
   );
 };
