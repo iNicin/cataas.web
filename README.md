@@ -62,7 +62,7 @@
 <br />
 <br />
 <a href="https://meow-generator.vercel.app">
-    <img src="src/assets/demo.jpeg" alt="Demo app">
+    <img src="src/assets/demo2.jpeg" alt="Demo app">
 </a>
 <br />
 <br />
