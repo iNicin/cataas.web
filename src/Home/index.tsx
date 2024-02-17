@@ -89,7 +89,7 @@ export const Home: React.FC<HomeProps> = () => {
             <img
               src={catImage}
               alt={`${selectedTag} cat image`}
-              style={{ height: "31.25rem", objectFit: "cover" }}
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
           </Card>
           <Button
