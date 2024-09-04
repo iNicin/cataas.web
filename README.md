@@ -8,6 +8,9 @@
 
 <br />
 <div align="center">
+
+<h3 align="center">In production... Applying the Atomic Design concept.<h3>
+  
   <a href="https://github.com/iNicin/meow-generator">
     <img src="src/assets/logo.svg" alt="Logo" height="80">
   </a>
