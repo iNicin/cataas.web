@@ -1,4 +1,3 @@
-// src/components/atoms/Image.tsx
 import React from "react";
 // Importa o React, necessário para criar componentes funcionais e utilizar JSX.
 
