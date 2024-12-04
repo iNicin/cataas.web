@@ -1,14 +1,15 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App'; // Importa sem a extensão .tsx
 
-import { Theme } from '@radix-ui/themes';
+const rootElement = document.getElementById('root');
 
+if (!rootElement) {
+  throw new Error('Root element not found');
+}
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(rootElement).render(
   <React.StrictMode>
-    <Theme>
-      <App />
-    </Theme>
-  </React.StrictMode>,
-)
+    <App />
+  </React.StrictMode>
+);
